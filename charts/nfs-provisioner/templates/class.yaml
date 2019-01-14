@@ -1,6 +1,7 @@
 kind: StorageClass
 apiVersion: storage.k8s.io/v1beta1
 metadata:
+  namespace: veo
   name: "{{ .Values.storageClass }}"
   {{- if .Values.defaultClass }}
   annotations:
