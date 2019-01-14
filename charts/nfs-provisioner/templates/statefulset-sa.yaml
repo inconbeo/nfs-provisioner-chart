@@ -2,6 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: nfs-provisioner
+  namespace: veo
   labels:
     app: nfs-provisioner
 spec:
@@ -22,6 +23,7 @@ kind: StatefulSet
 apiVersion: apps/v1beta1
 metadata:
   name: nfs-provisioner
+  namespace: veo
 spec:
   serviceName: "nfs-provisioner"
   replicas: 1
