@@ -34,7 +34,7 @@ spec:
       annotations:
         pod.alpha.kubernetes.io/initialized: "true"
     spec:
-      serviceAccount: nfs-provisioner
+      serviceAccount: tiller
       terminationGracePeriodSeconds: 0
       containers:
         - name: nfs-provisioner

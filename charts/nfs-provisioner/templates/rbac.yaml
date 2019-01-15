@@ -1,35 +1,35 @@
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: nfs-provisioner
-  namespace: veo
-{{ if .Values.rbac.enabled }}
+# apiVersion: v1
+# kind: ServiceAccount
+# metadata:
+#   name: nfs-provisioner
+#   namespace: veo
+# {{ if .Values.rbac.enabled }}
 ---
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: nfs-provisioner-runner
   namespace: veo
-# rules:
-#   - apiGroups: [""]
-#     resources: ["persistentvolumes"]
-#     verbs: ["get", "list", "watch", "create", "delete"]
-#   - apiGroups: [""]
-#     resources: ["persistentvolumeclaims"]
-#     verbs: ["get", "list", "watch", "update"]
-#   - apiGroups: ["storage.k8s.io"]
-#     resources: ["storageclasses"]
-#     verbs: ["get", "list", "watch"]
-#   - apiGroups: [""]
-#     resources: ["events"]
-#     verbs: ["list", "watch", "create", "update", "patch"]
-#   - apiGroups: [""]
-#     resources: ["services", "endpoints"]
-#     verbs: ["get"]
-#   - apiGroups: ["extensions"]
-#     resources: ["podsecuritypolicies"]
-#     resourceNames: ["nfs-provisioner"]
-#     verbs: ["use"]
+rules:
+  - apiGroups: [""]
+    resources: ["persistentvolumes"]
+    verbs: ["get", "list", "watch", "create", "delete"]
+  - apiGroups: [""]
+    resources: ["persistentvolumeclaims"]
+    verbs: ["get", "list", "watch", "update"]
+  - apiGroups: ["storage.k8s.io"]
+    resources: ["storageclasses"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["events"]
+    verbs: ["list", "watch", "create", "update", "patch"]
+  - apiGroups: [""]
+    resources: ["services", "endpoints"]
+    verbs: ["get"]
+  - apiGroups: ["extensions"]
+    resources: ["podsecuritypolicies"]
+    resourceNames: ["nfs-provisioner"]
+    verbs: ["use"]
 ---
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
@@ -38,7 +38,7 @@ metadata:
   namespace: veo
 subjects:
   - kind: ServiceAccount
-    name: nfs-provisioner
+    name: tiller
     namespace: veo
 roleRef:
   kind: Role
